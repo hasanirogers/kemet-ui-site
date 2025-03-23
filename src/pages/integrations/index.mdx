@@ -1,0 +1,219 @@
+---
+title: "Integrations"
+layout: "../../layouts/Content.astro"
+---
+
+
+# Integrations
+
+## React
+
+React 19 finally ships with out of the box support for Web Components. This means that you can use Kemet UI components in React in react without wrappers.
+
+[Reactbox](https://stackblitz.com/~/github.com/hasanirogers/web-components-reactbox) is a React sandbox that demonstrates how to use Kemet UI components in React 19 and newer. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-reactbox?ctl=1&embed=1&file=src/App.tsx&view=editor'" width="100%"></iframe>
+
+
+Notice that the components were simply imported then then the Web Component's API was simply used in the `App.tsx`. On line 15 you'll see an event.
+
+```javascript
+onkemet-drawer-opened={() => setIsDrawerOpened(true)}
+```
+
+The name of the event in Kemet UI is `kemet-drawer-opened`. In React 19 and newer, simply prepend `on` to your event name and work with them like you would regular synthetic React events like `onClick`.
+
+**Note**: To get your editor to recognize the Web Component in JSX, see [Using JSX](/guides/using-jsx/).
+
+## React Legacy
+
+React 18 and older has issues with Web Components. To get a Web Component to be fully compatible in React (Legacy) you need to use a wrapper. A wrapper handles rich data and events. These are the pitfalls of using Web Components in React (Legacy). With a wrapper you can use a Web Component as if it was an actual React Component.
+
+[Reactbox](https://stackblitz.com/~/github.com/hasanirogers/web-components-reactbox-legacy) is a React sandbox that demonstrates how to use Kemet UI components in React 18 and older. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-reactbox-legacy?ctl=1&embed=1&file=src/App.tsx&view=editor" width="100%"></iframe>
+
+
+### Working with Wrappers
+
+There are a few wrappers on the market including [React Wrapper](https://www.npmjs.com/package/@shoelace-style/react) created by the Shoelace team and also [Reactify WC](https://www.npmjs.com/package/reactify-wc). You are at liberty to use these wrappers, however the wrapper that this guide covers is called [createComponent](https://www.npmjs.com/package/@lit/react). Create Component is maintained by a Google and is a part of the effort to increase the adoption of Lit by making Web Components compatible with React. Although Kemet components are created with Lit, any Web Component should work well with Create Component. Create Component is recommended because of its strong support from Google.
+
+There are three main steps to using a wrapper in React (Legacy):
+
+1. Import createComponent and the Web Component you want
+2. Create a variable that stores a call to createComponent
+3. Use that variable as if it was a React component.
+
+### The Setup
+
+Create a variable that stores a call to createComponent.
+
+```javascript
+import { createComponent } from '@lit/react';
+import { KemetModal as KemetModalClass } from 'kemet-ui/dist/components/kemet-modal.js'
+
+...
+
+const KemetModalMappings = {
+  onOpen: 'kemet-modal-opened',
+  onClose: 'kemet-modal-closed'
+}
+
+export const KemetModal = createComponent(React, 'kemet-modal', KemetModalClass, KemetModalMappings);
+```
+
+Create Component accepts 4 args with the last of them being optional. You must pass the React object, the tag name of the web component you want to use, the class used to construct the component, and optionally an object that maps the events.
+
+You can find the name of the class used to construct a component by checking it's source code. In general Kemet component classes are always named Kemet[NameOfComponent] in camel case. So the class for the modal is `KemetModal`. Since we want to use `KemetModal` as the name for our component we import it as KemetModalClass to make the distinction.
+
+Web Components often have build in custom events that fire when some interaction on the Web Component has happened. Kemet Modal has two events, `kemet-modal-opened` and `kemet-modal-closed`. Later you'll see why need these events but for now just know that you can create an mapping object of these events. The key is synthetic React event and the value is the Web Component event to map to.
+
+### Using the Component
+
+Now that the variable is created you can reference it as a component in your app.
+
+```html
+<main>
+  <button onClick={() => handleModalOpen()}>Open Modal</button>
+</main>
+<KemetModal close-on-click effect="fade" opened={isDrawerOpened} onClose={() => handleModalClose()}>
+  <article>
+    <h3>Lorem ipsum</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin felis et lorem aliquam, quis vulputate augue pretium. Vestibulum interdum nisi sed mi maximus ullamcorper. Praesent non nibh velit. Aliquam erat volutpat. Sed ultrices, nunc quis varius ultricies, nisl ipsum hendrerit eros, ut iaculis odio nulla molestie mauris. Vivamus commodo mi at aliquam lacinia. Proin ullamcorper mattis enim quis pellentesque. Nulla aliquet pretium efficitur. Maecenas purus lorem, mattis sit amet nulla in, placerat varius metus. Phasellus felis justo, vulputate id justo et, ullamcorper vulputate urna. Phasellus a ante augue. Vivamus dapibus facilisis nunc vel fringilla. Duis congue quis turpis sed iaculis. Curabitur eget aliquet leo. Duis molestie porttitor leo, a eleifend est porttitor vitae.</p>
+  </article>
+</KemetModal>
+```
+
+In this example we have a piece of state called `isDrawerOpened` that stores whether or not the drawer is opened.
+
+```javascript
+const [isDrawerOpened, setIsDrawerOpened] = useState(false);
+```
+
+When we click on the button, `handleModalOpen` changes this to open. The opened property is then set to true on the Web Component and the so the modal opens.
+
+Notice however there's no close button on the modal. The modal is using a attribute called `close-on-click` which tells the modal to close when you click on it's scrim. We need to update our state variable `isDrawerOpened` to false when this happens. This is where events come in. Since we created an event mapping, we can now use the synthetic event `onClose` on our component. We give this event a handler that closes the modal when called.
+
+```javascript
+const handleModalClose = () => {
+  setIsDrawerOpened(false);
+};
+```
+
+Finally notice that we set the effect property to fade like you a Web Component or React component. And that's it. No `refs` to the element needed. You can work with the component as you would any common React component. If for some reason you need a ref though (such as you need direct access to a method), you can do so like this:
+
+```javascript
+let modal;
+
+<KemetModal ref={element => modal = element}>
+```
+
+You can then use the `modal` variable to call methods like `modal.myMethod()`. Note that the modal is written where you don't need to call methods directly. But if for some reason you need to with another component, say maybe the carousel, this is how you would do it.
+
+
+## Angular
+
+Enabling Web Component in Angular is easy. The only thing you have to do is turn on `CUSTOM_ELEMENTS_SCHEMA`. After that, you can use Web Components like any other component.
+
+
+[Angularbox](https://stackblitz.com/~/github.com/hasanirogers/web-components-angularbox) is a Angular sandbox that demonstrates how to use Kemet UI components in Angular. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-angularbox?ctl=1&embed=1&file=src/index.tsx&view=editor" width="100%"></iframe>
+
+
+Notice that in `src/index.ts` we've imported `CUSTOM_ELEMENTS_SCHEMA` and used it in `@Component`.
+
+```javascript
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+...
+@Component({
+  ...
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+```
+
+That's it. You can now use the Web Component.
+
+### Handling Custom Events in Angular
+
+To handle events in Angular use `HostListener`. Simply give the first argument of HostListener the name of the event you want to listen to. You can [read more on HostListener](https://angular.dev/api/core/HostListener#) in the Angular docs.
+
+```javascript
+import { Component, HostListener } from '@angular/core';
+import 'kemet-ui';
+...
+export class AppComponent  {
+  @HostListener('kemet-modal-closed', ['$event.target'])
+  onClose(modal) {
+    console.log(modal);
+    this.isDrawerOpened = false;
+  }
+
+  isDrawerOpened = false;
+
+  openDrawer() {
+    this.isDrawerOpened = true;
+  }
+}
+```
+
+The second argument simply captures the element that triggered the event (the modal) and we log it to the console just as an example of this.
+
+
+## Vue
+
+Vue has excellent support for Web Components. There is noting special needed to get Vue to support them.
+
+[Vuebox](https://stackblitz.com/~/github.com/hasanirogers/web-components-vuebox) is a Vue sandbox that demonstrates how to use Kemet UI components in Vue. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-vuebox?ctl=1&embed=1&file=src/App.vue&view=editor" width="100%"></iframe>
+
+Notice that everything is standard Vue code. The only other thing to note here is that the `vite.config.ts` files has code that allows the compiler to recognize Kemet UI Web Components. That's it.
+
+
+## Alpine
+
+With AlpineJS, you work with Web Components as if it was standard HTML and JavaScript.
+
+[Alpinebox](https://stackblitz.com/~/github.com/hasanirogers/web-components-alpinebox) is a Alpine sandbox that demonstrates how to use Kemet UI components in Alpine. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-alpinebox?ctl=1&embed=1&file=index.html&view=editor" width="100%" ></iframe>
+
+
+## Next
+
+Given the limitation of Web Components and SSR there are things you must consider while using Kemet UI in Next or any SSR framework. The primary thing you have to handle is building a `kemet.js` bundle and executing it as a script in the browser.
+
+[Here you'll find a full read up on this strategy](https://blog.hasanirogers.me/2024/08/web-components-and-ssr-with-nextjs.html).
+
+
+[Nextbox](https://stackblitz.com/~/github.com/hasanirogers/web-components-nextbox) is a Next sandbox that demonstrates how to use Kemet UI components in Next. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-nextbox?ctl=1&embed=1&file=app/layouts/default.tsx&view=editor" width="100%"></iframe>
+
+
+## Svelte
+
+Svelte has excellent support for Web Components.
+
+[Sveltebox](https://stackblitz.com/~/github.com/hasanirogers/web-components-sveltebox) is a Svelte sandbox that demonstrates how to use Kemet UI components in Svelte. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-sveltebox?ctl=1&embed=1&file=src/App.svelte&view=editor" width="100%" ></iframe>
+
+
+## Lit
+
+Lit supports Web Components natively. This simply documents some examples on how to use Kemet UI in a Lit application.
+
+[Litbox](https://stackblitz.com/~/github.com/hasanirogers/web-components-litbox) is a Lit sandbox that demonstrates how to use Kemet UI components in Lit. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-litbox?ctl=1&embed=1&file=src/my-element.ts&view=editor" width="100%"></iframe>
+
+
+## Solid
+
+Solid has excellent support for Web Components. The only thing to consider is that because Solid uses JSX, you'll need to [get JSX to recognize the Web Component](/guides/using-jsx/).
+
+[Solidbox](https://stackblitz.com/~/github.com/hasanirogers/web-components-solidbox) is a Solid sandbox that demonstrates how to use Kemet UI components in Solid. Check it out.
+
+<iframe src="https://stackblitz.com/edit/web-components-solidbox?ctl=1&embed=1&file=src/App.tsx&view=editor" width="100%"></iframe>

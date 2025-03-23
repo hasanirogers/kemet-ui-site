@@ -15,16 +15,25 @@ import '../styles/global.scss';
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<slot />
+    <docs-hamburger></docs-hamburger>
+    <kemet-drawer effect="push" overlay>
+      <aside slot="navigation">
+        <docs-nav location="sidebar"></docs-nav>
+      </aside>
+      <main slot="content">
+        <docs-nav location="content"></docs-nav>
+        <div>
+          <article>
+            <slot />
+          </article>
+        </div>
+      </main>
+    </kemet-drawer>
     <script>
-      import "kemet-ui/dist/components/kemet-button/kemet-button";
-      import "../components/docs-intro/docs-intro.ts";
-      import "../components/docs-everywhere/docs-everywhere.ts";
-      import "../components/docs-started/docs-started.ts";
-      import "../components/docs-guides/docs-guides.ts";
-      import "../components/docs-intro-cards/docs-intro-cards.ts";
-      import "../components/docs-designless/docs-designless.ts";
-      import "../components/docs-footer/docs-footer.ts";
+      import "kemet-ui/dist/components/kemet-drawer/kemet-drawer";
+      import "kemet-ui/dist/components/kemet-icon/kemet-icon";
+      import "../components/docs-nav/docs-nav.ts";
+      import "../components/docs-hamburger/docs-hamburger.ts";
     </script>
 	</body>
 </html>
