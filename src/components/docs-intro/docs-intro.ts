@@ -3,6 +3,8 @@ import { customElement } from 'lit/decorators.js';
 import { svgAnubis } from '../../content/svgs';
 import styles from './styles';
 import { stylesKemetBase } from '../../styles/shared';
+import 'kemet-ui/elements/button';
+import 'kemet-ui/elements/icon-bootstrap';
 
 
 @customElement('docs-intro')
@@ -19,21 +21,21 @@ export class DocsIntro extends LitElement {
         <br />
         <ul>
           <li>
-            <kemet-button link="#get-started" variant="rounded">
+            <kemet-button link="#get-started" rounded="lg">
               Get Started
-              <kemet-icon slot="right" icon="flag" size="20"></kemet-icon>
+              <kemet-icon-bootstrap slot="left" icon="flag" size="20"></kemet-icon-bootstrap>
             </kemet-button>
           </li>
           <li>
-            <kemet-button link="/integrations" variant="rounded">
+            <kemet-button link="/integrations" rounded="lg">
               Integrations
-              <kemet-icon slot="right" icon="code-slash" size="20"></kemet-icon>
+              <kemet-icon-bootstrap slot="left" icon="code-slash" size="20"></kemet-icon-bootstrap>
             </kemet-button>
           </li>
           <li>
-            <kemet-button link="/docs" variant="rounded">
+            <kemet-button link="/docs" rounded="lg">
               Documentation
-              <kemet-icon slot="right" icon="book" size="20"></kemet-icon>
+              <kemet-icon-bootstrap slot="left" icon="book" size="20"></kemet-icon-bootstrap>
             </kemet-button>
           </li>
         </ul>

@@ -32,6 +32,7 @@ export class DocsNav extends LitElement {
           <a href="/integrations#svelte">Svelte</a>
           <a href="/integrations#lit">Lit</a>
           <a href="/integrations#solid">Solid</a>
+          <a href="/integrations#marko">Marko</a>
         </nav>
         <nav>
           <h3>Guides</h3>

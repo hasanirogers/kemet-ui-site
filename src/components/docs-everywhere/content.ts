@@ -1,4 +1,4 @@
-import { svgReact, svgAngular, svgVue, svgAlpine, svgNext, svgSvelte, svgLit, svgSolid } from '../../content/svgs';
+import { svgReact, svgAngular, svgVue, svgAlpine, svgNext, svgSvelte, svgLit, svgSolid, svgMarko } from '../../content/svgs';
 
 export const integrations = [
   {
@@ -46,4 +46,9 @@ export const integrations = [
     slug: "solid",
     svg: svgSolid
   },
+  {
+    name: "Marko",
+    slug: "marko",
+    svg: svgMarko
+  }
 ];

@@ -2,7 +2,7 @@ import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import styles from './styles';
 import { stylesKemetBase, stylesShared } from '../../styles/shared';
-import KemetDrawer from 'kemet-ui/dist/components/kemet-drawer/kemet-drawer';
+import KemetDrawer from 'kemet-ui/elements/drawer.mjs';
 
 
 @customElement('docs-hamburger')
@@ -11,7 +11,7 @@ export class DocsHamburger extends LitElement {
   render() {
     return html`
       <button @click=${(event: PointerEvent) => this.handleClick(event)}>
-        <kemet-icon icon="list" size="32"></kemet-icon>
+        <kemet-icon-bootstrap icon="list" size="32"></kemet-icon-bootstrap>
       </button>
     `;
   }

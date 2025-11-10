@@ -49,3 +49,58 @@ export const svgSvelte = svg`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink
 </svg>`;
 export const svgLit = svg`<svg xmlns="http://www.w3.org/2000/svg" height="2500" width="2000" viewBox="0 0 768 960"><path d="M192 576l96-288 432 432-144 240-192-192h-96" fill="#00e8ff"/><path d="M384 768V384l192-192v384m-480 0h96l96 192-96 192L0 768z" fill="#283198" fill-rule="evenodd"/><path d="M192 576V192L384 0v384m192 576V576l192-192v384M0 768V384l192 192" fill="#324fff"/><path d="M192 960V576l192 192" fill="#0ff"/></svg>`;
 export const svgSolid = svg`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 166 155.3"><defs><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="27.5" y1="3" x2="152" y2="63.5"><stop offset=".1" stop-color="#76b3e1"/><stop offset=".3" stop-color="#dcf2fd"/><stop offset="1" stop-color="#76b3e1"/></linearGradient><linearGradient id="b" gradientUnits="userSpaceOnUse" x1="95.8" y1="32.6" x2="74" y2="105.2"><stop offset="0" stop-color="#76b3e1"/><stop offset=".5" stop-color="#4377bb"/><stop offset="1" stop-color="#1f3b77"/></linearGradient><linearGradient id="c" gradientUnits="userSpaceOnUse" x1="18.4" y1="64.2" x2="144.3" y2="149.8"><stop offset="0" stop-color="#315aa9"/><stop offset=".5" stop-color="#518ac8"/><stop offset="1" stop-color="#315aa9"/></linearGradient><linearGradient id="d" gradientUnits="userSpaceOnUse" x1="75.2" y1="74.5" x2="24.4" y2="260.8"><stop offset="0" stop-color="#4377bb"/><stop offset=".5" stop-color="#1a336b"/><stop offset="1" stop-color="#1a336b"/></linearGradient></defs><path d="M163 35S110-4 69 5l-3 1c-6 2-11 5-14 9l-2 3-15 26 26 5c11 7 25 10 38 7l46 9 18-30z" fill="#76b3e1"/><path d="M163 35S110-4 69 5l-3 1c-6 2-11 5-14 9l-2 3-15 26 26 5c11 7 25 10 38 7l46 9 18-30z" opacity=".3" fill="url(#a)"/><path d="M52 35l-4 1c-17 5-22 21-13 35 10 13 31 20 48 15l62-21S92 26 52 35z" fill="#518ac8"/><path d="M52 35l-4 1c-17 5-22 21-13 35 10 13 31 20 48 15l62-21S92 26 52 35z" opacity=".3" fill="url(#b)"/><path d="M134 80a45 45 0 00-48-15L24 85 4 120l112 19 20-36c4-7 3-15-2-23z" fill="url(#c)"/><path d="M114 115a45 45 0 00-48-15L4 120s53 40 94 30l3-1c17-5 23-21 13-34z" fill="url(#d)"/></svg>`;
+export const svgMarko = svg`<svg xmlns="http://www.w3.org/2000/svg" width="256" height="214" viewBox="0 0 2560 2140">
+  <style>stop:not([stop-color]){stop-color:inherit}</style>
+  <path fill="#8dc220" d="M1281 0h361l-427 697H854z"/>
+  <path fill="url(#a)" d="M427 0h361L361 697l427 697H427L0 698z"/>
+  <linearGradient id="a" x2="0" y2="1">
+    <stop offset=".685" stop-color="#44bfef"/>
+    <stop offset="1" stop-color="#2073ba"/>
+  </linearGradient>
+  <path fill="#00ac71" d="M854 697h361L788 0H427z"/>
+  <path fill="url(#b)" d="M1642 0h-361l428 697-428 697h361l428-697z"/>
+  <linearGradient id="b" x2="0" y2="1" stop-color="#f9bc00">
+    <stop offset=".5"/>
+    <stop offset=".5" stop-color="#e95506"/>
+    <stop offset=".833"/>
+  </linearGradient>
+  <path fill="url(#c)" d="M1493 246h-361L855 698h361z"/>
+  <linearGradient id="c" x2="0" y2="1" stop-color="#8ac23e">
+    <stop offset="0" stop-opacity="0"/>
+    <stop offset="1"/>
+  </linearGradient>
+  <path fill="url(#d)" d="M1005 452h361L1642 0h-361z"/>
+  <linearGradient id="d" x2="0" y2="1" stop-color="#698932">
+    <stop offset="0"/>
+    <stop offset="1" stop-opacity="0"/>
+  </linearGradient>
+  <path fill="url(#e)" d="M1919 452h-361L1281 0h361z"/>
+  <linearGradient id="e" x2="0" y2="1" stop-color="#ffed01">
+    <stop offset="0"/>
+    <stop offset="1" stop-opacity="0"/>
+  </linearGradient>
+  <path fill="url(#f)" d="M150 452h361L788 0H427z"/>
+  <linearGradient id="f" x2="0" y2="1" stop-color="#00828b">
+    <stop offset="0"/>
+    <stop offset=".833" stop-opacity="0"/>
+  </linearGradient>
+  <path fill="url(#g)" d="M638 246H277L0 698h361z"/>
+  <linearGradient id="g" x2="0" y2="1" stop-color="#88d0f1">
+    <stop offset="0" stop-opacity="0"/>
+    <stop offset="1"/>
+  </linearGradient>
+  <path fill="url(#h)" d="M1065 452H704L427 0h361z"/>
+  <linearGradient id="h" x2="0" y2="1" stop-color="#8ed0e1">
+    <stop offset="0"/>
+    <stop offset="1" stop-opacity="0"/>
+  </linearGradient>
+  <path fill="url(#i)" d="M2132 0h-361l427 697-428 697h361l428-697z"/>
+  <linearGradient id="i" x2="0" y2="1" stop-color="#df1b1c">
+    <stop offset="0" stop-color="#e02a89"/>
+    <stop offset=".31"/>
+    <stop offset=".5"/>
+    <stop offset=".5" stop-color="#7f1e4f"/>
+    <stop offset=".833"/>
+  </linearGradient>
+  <path fill="#000" d="M840 1895c0-27-2-53-7-76-9-45-32-79-72-97-66-28-142-12-202 26-33-31-75-40-114-40-55-1-111 6-164 22v393h94v-328c39-6 102-16 121 22 11 19 16 50 16 92v214h94v-225c-1-29-2-63-11-88 40-22 108-34 133 7 10 19 16 50 16 92v214h96zm91-95c34-10 69-16 104-16 56-1 87 33 84 80v16c-45-8-84-15-134-2-39 9-73 27-91 61-18 30-19 85-2 120 18 36 43 51 85 63 56 15 160 2 232-11v-246c-1-81-24-121-86-147-59-20-141-13-204 6zm65 245c-31-19-27-79 8-91 38-16 82-13 117-5v104c-39 4-93 11-125-8zm529-322c-83-27-175-13-247 14v387h94v-326c50-12 88-10 137 4zm203 175c57-59 113-120 168-181h-111c-46 55-96 107-145 159v-356l-94 16v587h94v-186c60 48 121 122 157 187h109c-45-88-135-190-178-226zm535-66c-18-50-54-90-102-110-51-21-109-20-157 0-49 20-86 60-102 110-19 57-19 118 0 175 17 51 55 93 105 115a189 189 0 00155-3c53-23 84-64 102-112 19-57 19-118-1-175zm-108 185c-37 51-113 44-146 0-32-47-37-139 0-193 37-51 118-43 146 0 32 41 37 139 0 193z"/>
+</svg>`;

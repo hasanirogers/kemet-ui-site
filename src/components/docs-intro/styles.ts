@@ -69,7 +69,7 @@ export default css`
   }
 
   kemet-button {
-    min-width: 200px;
+    min-width: 250px;
   }
 
   .logo {
