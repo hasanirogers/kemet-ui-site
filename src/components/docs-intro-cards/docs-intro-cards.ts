@@ -9,10 +9,13 @@ export class DocsIntroCards extends LitElement {
 
   render() {
     return html`
-      <h2>Striving for Excellence</h2>
-      <section>
-        ${this.makeCards()}
-      </section>
+      <div>
+        <h2>Striving for Excellence</h2>
+        <section>
+          ${this.makeCards()}
+        </section>
+      </div>
+      <span></span>
     `;
   }
 
